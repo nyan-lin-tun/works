@@ -30,10 +30,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
           <div className="root mx-auto flex min-h-dvh max-w-6xl flex-col px-6 sm:px-12 lg:px-16">
             <header className="flex min-h-28 flex-wrap items-center justify-between gap-5 py-7 sm:min-h-36">
-              <Link className="identity text-sm font-medium tracking-tight" href="/">
+              <a
+                className="identity text-sm font-medium tracking-tight"
+                href="https://nyanlintun.me/"
+              >
                 {site.name}
                 <span className="ml-1 text-accent">.</span>
-              </Link>
+              </a>
               <nav aria-label="Main navigation" className="flex items-center gap-6 sm:gap-8">
                 <Link className="nav-link" href="/">
                   Works
