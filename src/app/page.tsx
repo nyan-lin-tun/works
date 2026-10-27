@@ -11,7 +11,6 @@ export default function WorksPage() {
   return (
     <>
       <section className="intro pt-10 sm:pt-12">
-        <p className="mb-4 text-base text-muted">{page.title}</p>
         <h1 className="max-w-4xl text-3xl leading-snug font-normal tracking-tight sm:text-[2.4rem]">
           {page.headline}
         </h1>
