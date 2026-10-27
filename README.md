@@ -56,8 +56,8 @@ For links inside Markdown, use a full URL (including `https://nyanlintun.me/work
 
 1. Edit a Markdown file, locally or using GitHub's file editor.
 2. In local development, save and refresh the page. For the production preview, rebuild and refresh.
-3. Commit the edit. The validation workflow checks and builds all changes, including Markdown, and saves a downloadable preview artifact.
-4. Once GitHub Pages deployment is enabled, that same commit-and-build process can publish the updated pages automatically. **Deployment is not enabled yet.**
+3. Commit the edit. The workflow checks and builds all changes, including Markdown.
+4. Push to `main` to deploy the updated site automatically to **https://nyanlintun.me/works/** after all checks pass. Pull requests and other branches validate and save a preview artifact without publishing.
 
 Content is rendered during the build. Visitors receive the text in HTML without waiting for a separate README download.
 
@@ -102,9 +102,9 @@ npm run format:check # Check formatting without changing files
 
 Configuration lives in `eslint.config.mjs`, `.prettierrc.json`, `.prettierignore`, and `.editorconfig`. Generated output, dependency files, and `next-env.d.ts` are excluded from formatting. Enable your editor’s Prettier integration for formatting on save using the project configuration.
 
-GitHub validation runs linting, formatting checks, TypeScript checks, the production build, and export tests. Formatting and linting must pass before its preview artifact is uploaded. This workflow does not publish the website.
+GitHub validation runs linting, formatting checks, TypeScript checks, the production build, and export tests. All checks must pass before an artifact is uploaded. The deployment job publishes successful `main` builds to GitHub Pages; pull requests and other branches only validate.
 
-## GitHub Pages setup, when ready
+## GitHub Pages deployment
 
 The repository origin is `git@github.com:nyan-lin-tun/works.git`.
 
@@ -114,8 +114,9 @@ The repository origin is `git@github.com:nyan-lin-tun/works.git`.
 - The account's existing custom domain should stay on the account/root Pages repository. Leave the **works repository's custom-domain setting blank**, so it inherits the account domain.
 - Do not add a `CNAME` file here and do not change DNS for this project site.
 - `public/.nojekyll` is included for static-file compatibility.
-- `.github/workflows/validate.yml` only validates and uploads an artifact; it has no Pages deployment permission or step. Deployment can be added after reviewing the preview.
+- `.github/workflows/validate.yml` validates the site and deploys `main` through GitHub Actions. Only the deployment job has Pages write and OIDC permissions.
+- The `github-pages` environment records deployment history. To roll back, revert the relevant commit on `main` and push; the workflow will rebuild and redeploy.
 
-The hosting relationship above follows GitHub's documented custom-domain inheritance. The live account/root repository settings still need verification before enabling publication. No existing site, domain setting, or published file has been changed.
+The account/root Pages repository already owns `nyanlintun.me`. This project inherits that domain with its own `/works/` path. Its repository custom-domain setting remains blank; the root site, sibling sites, and DNS settings are managed separately.
 
 References: [GitHub project-site custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages#using-a-custom-domain-across-multiple-repositories), [Next.js basePath](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [static exports](https://nextjs.org/docs/app/guides/static-exports).
