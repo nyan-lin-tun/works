@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getSite } from '../lib/content';
 import { ThemeProvider } from '../components/theme-provider';
 import { ThemeToggle } from '../components/theme-toggle';
+import { Analytics } from '../components/analytics';
 import './globals.css';
 
 const site = getSite();
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

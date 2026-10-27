@@ -87,6 +87,10 @@ The production preview is **http://127.0.0.1:4322/works/**. Stop it with Ctrl+C.
 
 The scripts use Next.js’s supported Webpack builder because Turbopack’s local worker port binding is restricted in this environment. This affects the build tool, not the generated site or hosting.
 
+## Analytics
+
+Google Analytics 4 uses measurement ID `G-JXLXCN5680`, shared with the root website and Referrals. The integration lives in `src/components/analytics.tsx` and loads after hydration through Next.js `Script`. It is omitted in `next dev`; exported production builds (including the local production preview) include it. Use page-path reporting to distinguish `/works/` traffic from the other sites. No custom events are configured.
+
 ## Code quality and formatting
 
 ESLint uses Next.js’s recommended Core Web Vitals, React, React Hooks, and TypeScript rules. Prettier handles formatting separately, including CSS, Markdown, and Tailwind class ordering. EditorConfig provides consistent indentation and line endings across editors.
