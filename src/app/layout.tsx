@@ -39,7 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="ml-1 text-accent">.</span>
               </a>
               <nav aria-label="Main navigation" className="flex items-center gap-6 sm:gap-8">
-                <Link className="nav-link" href="/">
+                <a className="nav-link" href="https://nyanlintun.me/certificates/">
+                  Certificates
+                </a>
+                <Link className="nav-link" href="/" aria-current="page">
                   Works
                 </Link>
                 <ThemeToggle />
